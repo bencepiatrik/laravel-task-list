@@ -44,17 +44,12 @@ Route::put('/tasks/{task}', function (Task $task, TaskRequest $request) {
         ->with('success', 'Task updated successfully!');
 })->name('tasks.update');
 
-Route::get('/hello', function () {
-    return 'Hello';
-})->name('hello');
+Route::delete('/tasks/{task}', function (Task $task) {
+    $task->delete();
 
-Route::get('/greet/{name}', function ($name) {
-    return 'Hello ' . $name . '!';
-});
-
-Route::get('/hallo', function () {
-    return redirect()->route('hello');
-});
+    return redirect()->route('tasks.index')
+        ->with('sucess', 'Task deleted successfully!');
+})->name('tasks.destroy');
 
 Route::fallback(function () {
    return 'Still got somewhere!';
