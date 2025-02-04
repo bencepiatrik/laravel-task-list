@@ -10,4 +10,10 @@ class Task extends Model
     use HasFactory;
     protected $fillable = ['title', 'description', 'long_description'];
     //protected $guarded = [];
+
+    function toggleComplete()
+    {
+        $this->completed = !$this->completed;
+        $this->save();
+    }
 }
